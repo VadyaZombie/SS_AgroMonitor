@@ -1,4 +1,4 @@
-var collectionName = 'drivers';
+const collectionName = 'drivers';
 
 const getDrivers = () => {
     return new Promise((resolve, reject) => {

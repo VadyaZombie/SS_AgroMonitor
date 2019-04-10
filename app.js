@@ -1,9 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const routes = require('./routes/driverRoute');
-const  { MongoClient }  = require('mongodb');
+const driverRouter = require('./routes/driverRoute');
+const  {MongoClient}  = require('mongodb');
 const {url, dbName} = require('./config');
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -33,6 +34,6 @@ app.get('/', (req, res) => {
     }
 });
 
-app.use('/api', routes);
+app.use('/api/drivers', driverRouter);
 
 
