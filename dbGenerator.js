@@ -66,6 +66,7 @@ const arrayOfInitFields = [{
 const mongoClient = new MongoClient(url, {
     useNewUrlParser: true
 });
+
 mongoClient.connect((err, client) => {
     if (err) throw err;
     console.log('Adding collection "Drivers"');
@@ -73,19 +74,13 @@ mongoClient.connect((err, client) => {
     db.collection('Drivers').insertMany(arrayOfInitDrivers, (err, res) => {
         if (err) throw err;
         console.log(`Amount of inserted documents: ${res.insertedCount}`);
-        client.close();
         console.log('Collections with documents is created!');
-    })
-});
-
-mongoClient.connect((err, client) => {
-    if (err) throw err;
-    console.log('Adding collection "Fields"');
-    let db = client.db(dbName);
+    });
     db.collection('Fields').insertMany(arrayOfInitFields, (err, res) => {
         if (err) throw err;
         console.log(`Amount of inserted documents: ${res.insertedCount}`);
-        client.close();
+
         console.log('Collections with documents is created!');
-    })
+    });
+    client.close();
 });
