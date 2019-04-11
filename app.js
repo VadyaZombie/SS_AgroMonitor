@@ -36,4 +36,3 @@ app.get('/', (req, res) => {
 
 app.use('/api/drivers', driverRouter);
 
-
