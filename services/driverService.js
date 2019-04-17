@@ -12,12 +12,12 @@ const getDriverById = async (id) => {
     return await driverModel.getDriverById(id);
 };
 
-const getDriversByFirstname = async (driverFirstname) => {
-    return await driverModel.getDriversByFirstname(driverFirstname);
+const getDriversByFirstname = async (firstname) => {
+    return await driverModel.getDriversByFirstname(firstname);
 };
 
 const updatePartialDriver = async (id, content) => {
-    return await driverModel.updatePartialDriver(id, dricontentver);
+    return await driverModel.updatePartialDriver(id, content);
 };
 
 const updateDriver = async (id, content) => {

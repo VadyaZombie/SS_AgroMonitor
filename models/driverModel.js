@@ -14,8 +14,8 @@ const getDriverById = async (id) => {
     return await getCurDb().collection(driversCollection).findOne({_id: new ObjectID(id)});
 };
 
-const getDriversByFirstname = async (driverFirstname) => {
-    return await getCurDb().collection(driversCollection).find({firstname: driverFirstname}).toArray();
+const getDriversByFirstname = async (firstname) => {
+    return await getCurDb().collection(driversCollection).find({firstname: firstname}).toArray();
 };
 
 const updatePartialDriver = async (id, content) => {

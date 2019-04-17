@@ -11,7 +11,7 @@ const getDrivers = async (req, res) => {
 };
 
 const getDriverById = async (req, res) => {
-    const result = await driverService.getDriverById(req.params.id);
+    const result = await driverService.getDriverById(req.params['id']);
     res.status(200).json(result);
 };
 
