@@ -1,92 +1,46 @@
 const driverService = require('../services/driverService'); 
 
-const setDriver = async (req, res) => {
-    try {
-        await driverService.setDriver(req);
-        res.sendStatus(201);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
-};
-
-const getFullNameDrivers = async (req, res) => {
-    try {
-        let resDrivers = await driverService.getFullNameDrivers();
-        res.status(200).json(resDrivers);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
-};
-
-const getBirthdayDrivers = async (req, res) => {
-    try {
-        let resDrivers = await driverService.getBirthdayDrivers();
-        res.status(200).json(resDrivers);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
-};
-
-const getPositionDrivers = async (req, res) => {
-    try {
-        let resDrivers = await driverService.getPositionDrivers();
-        res.status(200).json(resDrivers);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
-};
-
-const getFullNameBirthdayDrivers = async (req, res) => {
-    try {
-        let resDrivers = await driverService.getFullNameBirthdayDrivers();
-        res.status(200).json(resDrivers);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
-};
-
-const getFullNamePositionDrivers = async (req, res) => {
-    try {
-        let resDrivers = await driverService.getFullNamePositionDrivers();
-        res.status(200).json(resDrivers);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
-};
-
-const getBirthdayPositionDrivers = async (req, res) => {
-    try {
-        let resDrivers = await driverService.getBirthdayPositionDrivers();
-        res.status(200).json(resDrivers);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
+const createDriver = async (req, res) => {
+    const result = await driverService.createDriver(req.body);
+    res.status(201).json(result.ops[0]);
 };
 
 const getDrivers = async (req, res) => {
-    try {
-        let resDrivers = await driverService.getDrivers();
-        res.status(200).json(resDrivers);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
+    const result = await driverService.getDrivers();
+    res.status(200).json(result);
+};
+
+const getDriverById = async (req, res) => {
+    const result = await driverService.getDriverById(req.params.id);
+    res.status(200).json(result);
+};
+
+const getDriversByFirstname = async (req, res) => {
+    const result = await driverService.getDriversByFirstname(req.query['firstname']);
+    res.status(200).json(result);
+};
+
+const updatePartialDriver = async (req, res) => {
+    const result = await driverService.updatePartialDriver(req.params['id'], req.body);
+    res.status(200).json(result['value']);
+};
+
+const updateDriver = async (req, res) => {
+    const result = await driverService.updateDriver(req.params['id'], req.body);
+    res.status(200).json(result['value']);
+};
+
+const deleteDriver = async (req, res) => {
+    const result = await driverService.deleteDriver(req.params['id']);
+    res.status(200).json(result);
 };
 
 module.exports = {
-    setDriver,
-    getFullNameDrivers,
-    getBirthdayDrivers,
-    getPositionDrivers,
-    getFullNameBirthdayDrivers,
-    getFullNamePositionDrivers,
-    getBirthdayPositionDrivers,
-    getDrivers
+    createDriver,
+    getDrivers,
+    getDriverById,
+    getDriversByFirstname,
+    updatePartialDriver,
+    updateDriver,
+    deleteDriver
 };

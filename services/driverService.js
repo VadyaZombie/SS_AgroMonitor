@@ -1,86 +1,39 @@
 const driverModel = require('../models/driverModel');
 
-const setDriver = async (req) => {
-  try{
-      return await driverModel.setDriver(req.body);
-  }
-    catch(err){
-        throw new Error(err);
-    }
-};
-
-const getFullNameDrivers = async () => {
-  try{
-      return await driverModel.getFullNameDrivers();
-  }
-    catch(err){
-        throw new Error(err);
-    }
-};
-
-const getBirthdayDrivers = async () => {
-  try{
-      return await driverModel.getBirthdayDrivers();
-  }
-    catch(err){
-        throw new Error(err);
-    }
-};
-
-const getPositionDrivers = async () => {
-  try{
-      return await driverModel.getPositionDrivers();
-  }
-    catch(err){
-        throw new Error(err);
-    }
-};
-
-
-const getFullNameBirthdayDrivers = async () => {
-  try{
-      return await driverModel.getFullNameBirthdayDrivers();
-  }
-    catch(err){
-        throw new Error(err);
-    }
-};
-
-const getFullNamePositionDrivers = async () => {
-  try{
-      return await driverModel.getFullNamePositionDrivers();
-  }
-    catch(err){
-        throw new Error(err);
-    }
-};
-
-const getBirthdayPositionDrivers = async () => {
-  try{
-      return await driverModel.getBirthdayPositionDrivers();
-  }
-    catch(err){
-        throw new Error(err);
-    }
+const createDriver = async (content) => {
+    return await driverModel.createDriver(content);
 };
 
 const getDrivers = async () => {
-  try{
-      return await driverModel.getDrivers();
-  }
-    catch(err){
-        throw new Error(err);
-    }
+    return await driverModel.getDrivers();
 };
 
+const getDriverById = async (id) => {
+    return await driverModel.getDriverById(id);
+};
+
+const getDriversByFirstname = async (driverFirstname) => {
+    return await driverModel.getDriversByFirstname(driverFirstname);
+};
+
+const updatePartialDriver = async (id, content) => {
+    return await driverModel.updatePartialDriver(id, dricontentver);
+};
+
+const updateDriver = async (id, content) => {
+    return await driverModel.updateDriver(id, content);
+};
+
+const deleteDriver = async (id) => {
+    return await driverModel.deleteDriver(id);
+};
 
 module.exports = {
-    setDriver,
-    getFullNameDrivers,
-    getBirthdayDrivers,
-    getPositionDrivers,
-    getFullNameBirthdayDrivers,
-    getFullNamePositionDrivers,
-    getBirthdayPositionDrivers,
-    getDrivers
+    createDriver,
+    getDrivers,
+    getDriverById,
+    getDriversByFirstname,
+    updatePartialDriver,
+    updateDriver,
+    deleteDriver
 };

@@ -1,38 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
-const driverRouter = require('./routes/driverRoute');
-const  {MongoClient}  = require('mongodb');
-const {url, dbName} = require('./config');
+const db = require('./dbConnect');
+const routers = require('./routes/routers');
 
+const app = express();
+
+db.getConnectionDb();
+app.listen(3000, () => console.log('App listen'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-const mongoClient = new MongoClient(url, {useNewUrlParser: true});
-mongoClient.connect((err, client) => {
-   try{
-       if(err) throw new Error(err);
-       
-       console.log('Connect DB');
-       db = client.db(dbName);
-       app.listen(3000, () => console.log('App listen'));
-   }
-    catch(err){
-        console.log(err.message);
-    }
+app.use('/', routers.mainRoute);
+app.use('/api/drivers', routers.driverRoute);
+
+app.use((req, res, next) => {
+    res.sendStatus(404);
 });
 
-app.get('/', (req, res) => {
-    try {
-        res.sendStatus(200);
-    } catch (err) {
-        console.log(err.message);
-        res.sendStatus(500);
-    }
+app.use((err, req, res, next) => {
+    res.status(err.statusCode || 500).send(err.message);
 });
-
-app.use('/api/drivers', driverRouter);
-

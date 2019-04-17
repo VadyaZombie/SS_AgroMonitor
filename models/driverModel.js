@@ -1,77 +1,42 @@
-const collectionName = 'drivers';
+const {ObjectID} = require('mongodb');
+const {driversCollection} = require('../config');
+const {getCurDb} = require('../dbConnect');
 
-const setDriver = (req) => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).insertOne(req, (err,res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
+const createDriver = async (content) => {
+    return await getCurDb().collection(driversCollection).insertOne(content);
 };
 
-const getFullNameDrivers = () => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).find({}, {projection:{_id:1,firstName:1,lastName:1}}).toArray((err, res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
+const getDrivers = async () => {
+    return await getCurDb().collection(driversCollection).find().toArray();
 };
 
-const getBirthdayDrivers = () => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).find({}, {projection:{_id:1,birthday:1}}).toArray((err, res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
+const getDriverById = async (id) => {
+    return await getCurDb().collection(driversCollection).findOne({_id: new ObjectID(id)});
 };
 
-const getPositionDrivers = () => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).find({}, {projection:{_id:1,position:1}}).toArray((err, res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
+const getDriversByFirstname = async (driverFirstname) => {
+    return await getCurDb().collection(driversCollection).find({firstname: driverFirstname}).toArray();
 };
 
-const getFullNameBirthdayDrivers = () => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).find({}, {projection:{_id:1,firstName:1,lastName:1,birthday:1}}).toArray((err, res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
+const updatePartialDriver = async (id, content) => {
+    return await getCurDb().collection(driversCollection).findOneAndUpdate({_id: new ObjectID(id)}, {$set: content}, {returnOriginal: false});
 };
 
-const getFullNamePositionDrivers = () => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).find({}, {projection:{_id:1,firstName:1,lastName:1,position:1}}).toArray((err, res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
+const updateDriver = async (id, content) => {
+    return await getCurDb().collection(driversCollection).findOneAndUpdate({_id: new ObjectID(id)}, {$set: content}, {returnOriginal: false});
 };
 
-const getBirthdayPositionDrivers = () => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).find({}, {projection:{_id:1,birthday:1,position:1}}).toArray((err, res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
-};
-
-
-const getDrivers = () => {
-    return new Promise((resolve, reject) => {
-        db.collection(collectionName).find().toArray((err, res) => {
-            err ? reject(err) : resolve(res);
-        });
-    });
+const deleteDriver = async (id) => {
+    await getCurDb().collection(driversCollection).deleteOne({_id: new ObjectID(id)});
+    return await getCurDb().collection(driversCollection).find().toArray();
 };
 
 module.exports = {
-    setDriver,
-    getFullNameDrivers,
-    getBirthdayDrivers,
-    getPositionDrivers,
-    getFullNameBirthdayDrivers,
-    getFullNamePositionDrivers,
-    getBirthdayPositionDrivers,
-    getDrivers
-}
+    createDriver,
+    getDrivers,
+    getDriverById,
+    getDriversByFirstname,
+    updatePartialDriver,
+    updateDriver,
+    deleteDriver
+};

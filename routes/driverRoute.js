@@ -1,21 +1,16 @@
 const express = require('express');
-const router = express.Router();
 const driverController = require('../controllers/driverController');
+const bodyHandler = require('../error_handlers/body_handlers');
+const filterHandler = require('../error_handlers/filter_handlers');
 
-router.post('/', driverController.setDriver);
+const router = express.Router();
 
-router.get('/', driverController.getDrivers);
-
-router.get('/fullname', driverController.getFullNameDrivers);
-
-router.get('/birthday', driverController.getBirthdayDrivers);
-
-router.get('/position', driverController.getPositionDrivers);
-
-router.get('/fullname/birthday', driverController.getFullNameBirthdayDrivers);
-
-router.get('/fullname/position', driverController.getFullNamePositionDrivers);
-
-router.get('/birthday/position', driverController.getBirthdayPositionDrivers);
+router.post('/', bodyHandler.checkBody(), driverController.createDriver);
+router.get('/', filterHandler.checkFilter(), driverController.getDrivers);
+router.get('/', driverController.getDriversByFirstname);
+router.get('/:id([a-zA-z0-9]{24})', driverController.getDriverById);
+router.patch('/:id([a-zA-z0-9]{24})',bodyHandler.checkBody(), driverController.updatePartialDriver);
+router.put('/:id([a-zA-z0-9]{24})', bodyHandler.checkBody(), driverController.updateDriver);
+router.delete('/:id([a-zA-z0-9]{24})', driverController.deleteDriver);
 
 module.exports = router;
