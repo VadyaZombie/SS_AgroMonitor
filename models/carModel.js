@@ -1,7 +1,7 @@
 const AgroModel = require('./agroModel');
 
-class DriverModel extends AgroModel {
+class CarModel extends AgroModel {
     constructor() {}
 }
 
-module.exports = DriverModel;
+module.exports = CarModel;

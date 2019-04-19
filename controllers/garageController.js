@@ -1,9 +1,9 @@
 const AgroController = require('./agroController'); 
 
-class DriverController extends AgroController {
+class GarageController extends AgroController {
     constructor(collectionName) {
         super(collectionName);
     }
 }
 
-module.exports = DriverController;
+module.exports = GarageController;

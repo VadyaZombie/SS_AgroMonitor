@@ -5,6 +5,7 @@ const routers = require('./routes/routers');
 
 const app = express();
 
+ 
 db.getConnectionDb();
 app.listen(3000, () => console.log('App listen'));
 
@@ -15,6 +16,10 @@ app.use(bodyParser.urlencoded({
 
 app.use('/', routers.mainRoute);
 app.use('/api/drivers', routers.driverRoute);
+app.use('/api/fields', routers.fieldRoute);
+app.use('/api/cars', routers.carRoute);
+app.use('/api/garages', routers.garageRoute);
+app.use('/api/stores', routers.storeRoute);
 
 app.use((req, res, next) => {
     res.sendStatus(404);
