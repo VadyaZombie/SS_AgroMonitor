@@ -5,7 +5,6 @@ const routers = require('./routes/routers');
 
 const app = express();
 
- 
 db.getConnectionDb();
 app.listen(3000, () => console.log('App listen'));
 
