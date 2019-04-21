@@ -8,26 +8,34 @@ const patterns = {
         position: 'string'
     },
     fields: {
-
+        square: 'number',
+        capacity: 'number',
+        drivers: 'object'
     },
     cars: {
-
+        weight: 'number',
+        max_cap: 'number',
+        cur_cap: 'number',
+        driver_id: 'string'
     },
     garages: {
-
+        max_cap: 'number',
+        cur_cap: 'number',
+        cars_id: 'object'
     },
     stores: {
-
+        max_cap: 'number',
+        cur_cap: 'number',
     }
 }
 
 const isEmptyCheck = (body, next) => {
-    for (value of Object.keys(body)) {
-        if (!body[value]) {
-            next(err.generateError(`Body value ${value} is empty`, 400));
-            return false;
-        }
-    }
+    // for (value of Object.keys(body)) {
+    //     if (!body[value] === 0 || !body[value]) {
+    //         next(err.generateError(`Body value ${value} is empty`, 400));
+    //         return false;
+    //     }
+    // }
     return true;
 };
 
@@ -57,6 +65,7 @@ const checkBodyContent = (body, curPattern, next) => {
 const checkBody = (collectionName) => {
     let curPattern = patterns[collectionName];
     return (req, res, next) => {
+        console.log(`This is a collection name ==> ${collectionName}`);
         if (paramsAmountCheck(req.body, curPattern, next)) {
             if (isEmptyCheck(req.body, next)) {
                 if (checkBodyContent(req.body, curPattern, next)) {

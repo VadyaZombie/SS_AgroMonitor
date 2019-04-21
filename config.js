@@ -4,7 +4,7 @@ const driversCollection = 'drivers';
 const fieldCollection = 'fields';
 const carCollection = 'cars';
 const garageCollection = 'garages';
-const storeCollection = 'store';
+const storeCollection = 'stores';
 
 module.exports = {
     url,
