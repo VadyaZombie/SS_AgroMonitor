@@ -34,7 +34,7 @@ const arrayOfInitDrivers = [{
 ];
 const arrayOfInitFields = [{
         square: 75,
-        capascty: 50,
+        capacity: 50,
         drivers: []
     },
     {
