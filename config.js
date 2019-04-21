@@ -1,17 +1,17 @@
 const url = 'mongodb://localhost:27017/';
 const dbName = 'agromonitor';
 const driversCollection = 'drivers';
-const fieldCollection = 'fields';
-const carCollection = 'cars';
-const garageCollection = 'garages';
-const storeCollection = 'stores';
+const fieldsCollection = 'fields';
+const carsCollection = 'cars';
+const garagesCollection = 'garages';
+const storesCollection = 'stores';
 
 module.exports = {
     url,
     dbName,
     driversCollection,
-    fieldCollection,
-    carCollection,
-    garageCollection,
-    storeCollection
+    fieldsCollection,
+    carsCollection,
+    garagesCollection,
+    storesCollection
 };
