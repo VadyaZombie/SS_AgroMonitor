@@ -2,31 +2,31 @@ const MongoClient = require('mongodb').MongoClient;
 const {url,dbName} = require('./config');
 
 const arrayOfInitDrivers = [{
-        firstName: 'Vadim',
+        firstname: 'Vadim',
         lastname: 'Feoklistov',
         birthday: '12.08.1999',
         position: 'Node.js dev/CombMan'
     },
     {
-        firstName: 'Dyk',
+        firstname: 'Dyk',
         lastname: 'Le',
         birthday: '01.01.1999',
         position: 'Node.js dev/CombMan'
     },
     {
-        firstName: 'Makson',
+        firstname: 'Makson',
         lastname: 'lastneimovich',
         birthday: '11.10.1991',
         position: 'Mentor/CombMan'
     },
     {
-        firstName: 'John',
+        firstname: 'John',
         lastname: 'Strong',
         birthday: '24.01.1994',
         position: 'CombMan'
     },
     {
-        firstName: 'Steve',
+        firstname: 'Steve',
         lastname: 'Grifel',
         birthday: '14.11.2000',
         position: 'CombMan'

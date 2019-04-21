@@ -1,16 +1,17 @@
 const express = require('express');
-const driverController = require('../controllers/driverController');
-const bodyHandler = require('../error_handlers/body_handlers');
-const filterHandler = require('../error_handlers/filter_handlers');
+const {bodyHandler, filterHandler} = require('../error_handlers/error_handlers');
+const DriverController = require('../controllers/driverController');
+const {driversCollection} = require('../config');
 
 const router = express.Router();
+const driverController = new DriverController(driversCollection);
 
-router.post('/', bodyHandler.checkBody(), driverController.createDriver);
-router.get('/', filterHandler.checkFilter(), driverController.getDrivers);
-router.get('/', driverController.getDriversByFirstname);
-router.get('/:id([a-zA-z0-9]{24})', driverController.getDriverById);
-router.patch('/:id([a-zA-z0-9]{24})',bodyHandler.checkBody(), driverController.updatePartialDriver);
-router.put('/:id([a-zA-z0-9]{24})', bodyHandler.checkBody(), driverController.updateDriver);
-router.delete('/:id([a-zA-z0-9]{24})', driverController.deleteDriver);
+router.post('/', bodyHandler.checkBody(), driverController.createDocument);
+router.get('/', filterHandler.checkFilter(), driverController.getAllDocument);
+router.get('/', driverController.getDocumentByFilter);
+router.get('/:id([a-zA-z0-9]{24})', driverController.getDocumentById);
+router.patch('/:id([a-zA-z0-9]{24})',bodyHandler.checkBody(), driverController.updateDocument);
+router.put('/:id([a-zA-z0-9]{24})', bodyHandler.checkBody(), driverController.updateDocument);
+router.delete('/:id([a-zA-z0-9]{24})', driverController.deleteDocument);
 
 module.exports = router;
