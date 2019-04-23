@@ -33,84 +33,78 @@ const arrayOfInitDrivers = [{
     }
 ];
 const arrayOfInitFields = [{
-        square: 75,
-        capacity: 50,
+        maxCap : 150000,
+        curCap: 150000,
         drivers: []
     },
     {
-        square: 50,
-        capacity: 40,
+        maxCap: 150000,
+        curCap: 150000,
         drivers: []
     },
     {
-        square: 50,
-        capacity: 50,
+        maxCap: 100000,
+        curCap: 88000,
         drivers: []
     },
-    {
-
-        square: 50,
-        capacity: 0,
-        drivers: []
-    }
 ];
 const arrayOfInitCars = [{
 
         weight: 2200,
-        max_cap: 1100,
-        cur_cap: 500,
-        driver_id:''
+        maxCap: 1100,
+        curCap: 0,
+        driverId:''
     },
     {
         weight: 2200,
-        max_cap: 1100,
-        cur_cap: 500,
-        driver_id:''
+        maxCap: 1100,
+        curCap: 0,
+        driverId:''
     },
     {
         weight: 2100,
-        max_cap: 1000,
-        cur_cap: 700,
-        driver_id:''
+        maxCap: 1000,
+        curCap: 0,
+        driverId:''
     },
     {
 
         weight: 2400,
-        max_cap: 1500,
-        cur_cap: 180,
-        driver_id:''
+        maxCap: 1500,
+        curCap: 0,
+        driverId:''
     },
     {
 
         weight: 2200,
-        max_cap: 1100,
-        cur_cap: 0,
-        driver_id:''
+        maxCap: 1100,
+        curCap: 0,
+        driverId:''
     }
 ];
 const arrayOfInitGarages = [{
-        max_cap: 100,
-        cur_cap: 0,
-        cars_id: []
+        maxCap: 100,
+        curCap: 0,
+        carsId: []
     },
     {
-        max_cap: 120,
-        cur_cap: 0,
-        cars_id: []
+        maxCap: 120,
+        curCap: 0,
+        carsId: []
     },
     {
-        max_cap: 120,
-        cur_cap: 0,
-        cars_id: []
+        maxCap: 120,
+        curCap: 0,
+        carsId: []
     }
 ];
 const arrayOfInitStores = [{
-        max_cap: 50000,
-        cur_cap: 10050,
+        maxCap: 50000,
+        curCap: 10050,
     },
     {
-        max_cap: 50000,
-        cur_cap: 0,
+        maxCap: 50000,
+        curCap: 0,
     }
 ];
 
