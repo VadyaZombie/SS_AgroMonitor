@@ -2,7 +2,6 @@ const AgroService = require('../services/agroService');
 
 class AgroController {
     constructor(collectionName) {
-        this.collectionName = collectionName;
 
         this.agroService = new AgroService(collectionName);
 
@@ -21,12 +20,20 @@ class AgroController {
 
      async getAllDocument (req, res) {
         const result = await this.agroService.getAllDocument();
-        res.status(200).json(result);
+        if(result.length){
+            res.status(200).json(result);
+        } else {
+            res.status(200).json(result);
+        }
     }
 
     async getDocumentById(req, res) {
         const result = await this.agroService.getDocumentById(req.params['id']);
-        res.status(200).json(result);
+        if(result){
+            res.status(200).json(result);
+        } else {
+            res.status(404).send('ID doesn\'t exist');
+        }
     }
 
     async getDocumentByFilter(req, res) {
@@ -36,12 +43,22 @@ class AgroController {
 
     async updateDocument(req, res) {
         const result = await this.agroService.updateDocument(req.params['id'], req.body);
-        res.status(200).json(result['value']);
+        if(result['value']){
+            res.status(200).json(result['value']);
+        } else {
+            res.status(404).send('ID doesn\'t exist');
+        }
     }
 
     async deleteDocument(req, res) {
-        const result = await this.agroService.deleteDocument(req.params['id']);
-        res.status(200).json(result);
+        let result = await this.agroService.deleteDocument(req.params['id']);
+        const {n: delNumber} = result['result'];        
+        if(delNumber){
+            result = await this.agroService.getAllDocument();
+            res.status(200).json(result);
+        } else {
+            res.status(404).send('ID doesn\'t exist');
+        }
     }
 }
 

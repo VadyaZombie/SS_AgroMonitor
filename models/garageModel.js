@@ -18,6 +18,12 @@ class GarageModel extends AgroModel {
     async addCarToGarage(){
         return await true;
     }
+    async updateGarage(carId, garageId) {
+        return await db.getDb().collection(this.collectionName)
+        .findOneAndUpdate({_id: new ObjectID(garageId)}, {$push: {carsId: carId}},{returnOriginal: false});
+    }
+
+
 }
 
 module.exports = GarageModel;

@@ -13,6 +13,8 @@ router.get('/:id([a-zA-z0-9]{24})', driverController.getDocumentById);
 router.patch('/:id([a-zA-z0-9]{24})', driverController.updateDocument);
 router.put('/:id([a-zA-z0-9]{24})', bodyHandler.checkBody(driversCollection), driverController.updateDocument);
 router.delete('/:id([a-zA-z0-9]{24})', driverController.deleteDocument);
+router.post('/:id([a-zA-z0-9]{24})/set-car', bodyHandler.checkCarId(), driverController.setCar);
+router.post('/:id([a-zA-z0-9]{24})/unset-car', bodyHandler.checkCarId(), driverController.unsetCar);
 router.post('/:id([a-zA-z0-9]{24})/slaveWork', driverController.assignOnField); //I have some questions!
 router.post('/:id([a-zA-z0-9]{24})/take-car', driverController.takeCar);
 

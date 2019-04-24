@@ -10,7 +10,7 @@ class AgroModel {
         return await db.getDb().collection(this.collectionName).insertOne(content);
     }
 
-    async getAllDocument () {
+    async getAllDocument() {
         return await db.getDb().collection(this.collectionName).find().toArray();
     }
 
@@ -25,10 +25,9 @@ class AgroModel {
     async updateDocument(id, content) {
         return await db.getDb().collection(this.collectionName).findOneAndUpdate({_id: new ObjectID(id)}, {$set: content}, {returnOriginal: false});
     }
-
+    
     async deleteDocument(id){
-        await db.getDb().collection(this.collectionName).deleteOne({_id: new ObjectID(id)});
-        return await db.getDb().collection(this.collectionName).find().toArray();
+        return await db.getDb().collection(this.collectionName).deleteOne({_id: new ObjectID(id)});
     }
 }
 

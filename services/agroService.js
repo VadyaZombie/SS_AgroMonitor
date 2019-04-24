@@ -2,10 +2,8 @@ const AgroModel = require('../models/agroModel');
 
 class AgroService {
     constructor(collectionName) {
-        this.collectionName = collectionName;
 
         this.agroModel = new AgroModel(collectionName);
-
     }
 
     async createDocument(content) {
