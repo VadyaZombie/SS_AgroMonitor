@@ -13,19 +13,17 @@ const patterns = {
         drivers: 'object'
     },
     cars: {
-        weight: 'number',
         max_cap: 'number',
         cur_cap: 'number',
-        driver_id: 'string'
+        driverId: 'string'
     },
     garages: {
-        max_cap: 'number',
-        cur_cap: 'number',
-        cars_id: 'object'
+        maxCap: 'number',
+        carsId: 'object'
     },
     stores: {
-        max_cap: 'number',
-        cur_cap: 'number',
+        maxCap: 'number',
+        curCap: 'number',
     }
 }
 

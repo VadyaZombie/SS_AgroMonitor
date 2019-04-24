@@ -10,7 +10,7 @@ router.post('/', bodyHandler.checkBody(carsCollection), carController.createDocu
 router.get('/', filterHandler.checkFilter(carsCollection), carController.getAllDocument);
 router.get('/', carController.getDocumentByFilter);
 router.get('/:id([a-zA-z0-9]{24})', carController.getDocumentById);
-router.patch('/:id([a-zA-z0-9]{24})',/*bodyHandler.checkBody(carCollection),*/ carController.updateDocument);
+router.patch('/:id([a-zA-z0-9]{24})', carController.updateDocument);
 router.put('/:id([a-zA-z0-9]{24})', bodyHandler.checkBody(carsCollection), carController.updateDocument);
 router.delete('/:id([a-zA-z0-9]{24})', carController.deleteDocument);
 

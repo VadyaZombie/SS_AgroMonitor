@@ -49,34 +49,26 @@ const arrayOfInitFields = [{
     },
 ];
 const arrayOfInitCars = [{
-
-        weight: 2200,
         maxCap: 1100,
         curCap: 0,
         driverId:''
     },
     {
-        weight: 2200,
         maxCap: 1100,
         curCap: 0,
         driverId:''
     },
     {
-        weight: 2100,
         maxCap: 1000,
         curCap: 0,
         driverId:''
     },
     {
-
-        weight: 2400,
         maxCap: 1500,
         curCap: 0,
         driverId:''
     },
     {
-
-        weight: 2200,
         maxCap: 1100,
         curCap: 0,
         driverId:''
@@ -84,23 +76,20 @@ const arrayOfInitCars = [{
 ];
 const arrayOfInitGarages = [{
         maxCap: 100,
-        curCap: 0,
         carsId: []
     },
     {
         maxCap: 120,
-        curCap: 0,
         carsId: []
     },
     {
         maxCap: 120,
-        curCap: 0,
         carsId: []
     }
 ];
 const arrayOfInitStores = [{
         maxCap: 50000,
-        curCap: 10050,
+        curCap: 20000,
     },
     {
         maxCap: 50000,
