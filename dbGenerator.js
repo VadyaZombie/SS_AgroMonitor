@@ -33,73 +33,78 @@ const arrayOfInitDrivers = [{
     }
 ];
 const arrayOfInitFields = [{
-        maxCapacity: 75,
-        curCapacity: 50,
-        driversId: []
+        maxCap : 150000,
+        curCap: 150000,
+        drivers: []
     },
     {
-        maxCapacity: 50,
-        curCapacity: 40,
-        driversId: []
+        maxCap: 150000,
+        curCap: 150000,
+        drivers: []
     },
     {
-        maxCapacity: 50,
-        curCapacity: 50,
-        driversId: []
+        maxCap: 100000,
+        curCap: 88000,
+        drivers: []
+    },
+];
+const arrayOfInitCars = [{
+
+        weight: 2200,
+        maxCap: 1100,
+        curCap: 0,
+        driverId:''
+    },
+    {
+        weight: 2200,
+        maxCap: 1100,
+        curCap: 0,
+        driverId:''
+    },
+    {
+        weight: 2100,
+        maxCap: 1000,
+        curCap: 0,
+        driverId:''
     },
     {
 
-        maxCapacity: 50,
-        curCapacity: 0,
-        driversId: []
-    }
-];
-const arrayOfInitCars = [{
-        maxCapacity: 1100,
-        curCapacity: 500,
+        weight: 2400,
+        maxCap: 1500,
+        curCap: 0,
         driverId:''
     },
     {
-        maxCapacity: 1100,
-        curCapacity: 500,
-        driverId:''
-    },
-    {
-        maxCapacity: 1000,
-        curCapacity: 700,
-        driverId:''
-    },
-    {
-        maxCapacity: 1500,
-        curCapacity: 180,
-        driverId:''
-    },
-    {
-        maxCapacity: 1100,
-        curCapacity: 0,
+
+        weight: 2200,
+        maxCap: 1100,
+        curCap: 0,
         driverId:''
     }
 ];
 const arrayOfInitGarages = [{
-        maxCapacity: 100,
+        maxCap: 100,
+        curCap: 0,
         carsId: []
     },
     {
-        maxCapacity: 120,
+        maxCap: 120,
+        curCap: 0,
         carsId: []
     },
     {
-        maxCapacity: 120,
+        maxCap: 120,
+        curCap: 0,
         carsId: []
     }
 ];
 const arrayOfInitStores = [{
-        maxCapacity: 50000,
-        curCapacity: 10050,
+        maxCap: 50000,
+        curCap: 10050,
     },
     {
-        maxCapacity: 50000,
-        curCapacity: 0,
+        maxCap: 50000,
+        curCap: 0,
     }
 ];
 

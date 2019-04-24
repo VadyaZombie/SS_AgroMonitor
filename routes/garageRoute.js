@@ -9,8 +9,8 @@ const garageController = new GarageController(garagesCollection);
 router.post('/', bodyHandler.checkBody(), garageController.createDocument);
 router.get('/', garageController.getAllDocument);
 router.get('/:id([a-zA-z0-9]{24})', garageController.getDocumentById);
-router.patch('/:id([a-zA-z0-9]{24})',bodyHandler.checkBody(), garageController.updateDocument);
-router.put('/:id([a-zA-z0-9]{24})', bodyHandler.checkBody(), garageController.updateDocument);
+router.patch('/:id([a-zA-z0-9]{24})',bodyHandler.checkBody(garageCollection), garageController.updateDocument);
+router.put('/:id([a-zA-z0-9]{24})', bodyHandler.checkBody(garagesCollection), garageController.updateDocument);
 router.delete('/:id([a-zA-z0-9]{24})', garageController.deleteDocument);
 
 module.exports = router;
