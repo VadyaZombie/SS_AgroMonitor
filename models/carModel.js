@@ -1,7 +1,9 @@
 const AgroModel = require('./agroModel');
 
 class CarModel extends AgroModel {
-    constructor() {}
+    constructor(collectionName) {
+        super(collectionName);
+    }
 }
 
 module.exports = CarModel;

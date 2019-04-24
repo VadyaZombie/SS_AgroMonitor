@@ -33,84 +33,73 @@ const arrayOfInitDrivers = [{
     }
 ];
 const arrayOfInitFields = [{
-        square: 75,
-        capascty: 50,
-        drivers: []
+        maxCapacity: 75,
+        curCapacity: 50,
+        driversId: []
     },
     {
-        square: 50,
-        capacity: 40,
-        drivers: []
+        maxCapacity: 50,
+        curCapacity: 40,
+        driversId: []
     },
     {
-        square: 50,
-        capacity: 50,
-        drivers: []
+        maxCapacity: 50,
+        curCapacity: 50,
+        driversId: []
     },
     {
 
-        square: 50,
-        capacity: 0,
-        drivers: []
+        maxCapacity: 50,
+        curCapacity: 0,
+        driversId: []
     }
 ];
 const arrayOfInitCars = [{
-
-        weight: 2200,
-        max_cap: 1100,
-        cur_cap: 500,
-        driver_id:''
+        maxCapacity: 1100,
+        curCapacity: 500,
+        driverId:''
     },
     {
-        weight: 2200,
-        max_cap: 1100,
-        cur_cap: 500,
-        driver_id:''
+        maxCapacity: 1100,
+        curCapacity: 500,
+        driverId:''
     },
     {
-        weight: 2100,
-        max_cap: 1000,
-        cur_cap: 700,
-        driver_id:''
+        maxCapacity: 1000,
+        curCapacity: 700,
+        driverId:''
     },
     {
-
-        weight: 2400,
-        max_cap: 1500,
-        cur_cap: 180,
-        driver_id:''
+        maxCapacity: 1500,
+        curCapacity: 180,
+        driverId:''
     },
     {
-
-        weight: 2200,
-        max_cap: 1100,
-        cur_cap: 0,
-        driver_id:''
+        maxCapacity: 1100,
+        curCapacity: 0,
+        driverId:''
     }
 ];
 const arrayOfInitGarages = [{
-        max_cap: 100,
-        cur_cap: 0,
-        cars_id: []
+        maxCapacity: 100,
+        carsId: []
     },
     {
-        max_cap: 120,
-        cur_cap: 0,
-        cars_id: []
+        maxCapacity: 120,
+        carsId: []
     },
     {
-        max_cap: 120,
-        cur_cap: 0,
-        cars_id: []
+        maxCapacity: 120,
+        carsId: []
     }
 ];
 const arrayOfInitStores = [{
-        max_cap: 50000,
-        cur_cap: 10050,
+        maxCapacity: 50000,
+        curCapacity: 10050,
     },
     {
-        max_cap: 50000,
-        cur_cap: 0,
+        maxCapacity: 50000,
+        curCapacity: 0,
     }
 ];
 

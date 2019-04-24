@@ -1,7 +1,9 @@
 const AgroService = require('./agroService');
 
 class DriverService extends AgroService {
-    constructor() {}
+    constructor(collectioName) {
+        super(collectioName);
+    }
 }
 
 module.exports = DriverService;
