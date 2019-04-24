@@ -30,7 +30,7 @@ class DriverService extends AgroService {
     }
 
     async driverIsExist(driverId){
-        if(driverId.length != 24) {return false}
+        if(driverId.length !== 24) {return false}
         let result = await this.agroModel.getDocumentById(driverId);
         if (result) {
             return true;
@@ -89,6 +89,7 @@ class DriverService extends AgroService {
         } else { return await{ err : 'this driver is already working'}};
     }
 
+    // async 
 }
 
 module.exports = DriverService;

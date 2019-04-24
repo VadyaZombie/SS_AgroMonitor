@@ -31,8 +31,10 @@ class FieldService extends AgroService {
         return await this.fieldModel.removeDriverFromField(fieldId, driverId);
     }
 
-    async isExist(fieldId) {
-        if (await this.agroModel.getDocumentById(fieldId)) {
+    async fieldIsExist(fieldId) {
+        if(fieldId.length !== 24) {return false}
+        let result = await this.agroModel.getDocumentById(fieldId);
+        if (result) {
             return true;
         } else {
             return false;

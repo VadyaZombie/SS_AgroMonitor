@@ -32,7 +32,6 @@ class DriverController extends AgroController {
 
     async takeCar(req, res) {
         if(await this.driverService.driverIsExist(req.params['id'])){
-            await console.log(req.body);
             if (await this.carService.carIsExist(req.body['carId'])){
                 const result = await this.driverService.takeCarById(req.params['id'], req.body['carId'])
                 res.status(200).json({message : result});
@@ -41,7 +40,11 @@ class DriverController extends AgroController {
     }
 
     // async onField(req, res) {
-
+    //     if(await this.driverService.driverIsExist(req.params['id'])){
+    //         if(await this.fieldService.fieldIsExist(req.body['fieldId'])){
+    //             const result = await this.driverService.moveToField(req.params['id'] , req.body['fieldId']);
+    //         } else { res.status(404).json({message: `Field with id ${req.body['fieldId']} does not exist`})}
+    //     } else { res.status(404).json({message: `Driver with id ${req.params['id']} does not exist`})}
     // }}
 
     // async loadIntoCar(){
