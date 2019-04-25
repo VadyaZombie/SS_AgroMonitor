@@ -27,7 +27,7 @@ class DriverController extends AgroController {
 
         this.assignOnField = this.assignOnField.bind(this);
         this.takeCar = this.takeCar.bind(this);
-        //this.onField = this.onField.bind(this);
+        this.onField = this.onField.bind(this);
 
     }
 
@@ -87,7 +87,7 @@ class DriverController extends AgroController {
             res.status(404).send('Driver doesn\'t exist');
         } 
     }
-}
+
 
     async assignOnField(req, res) {
         const result = await this.driverService.assignOnField(req.params['id'], req.body);
@@ -112,13 +112,14 @@ class DriverController extends AgroController {
         } else { res.status(404).json({message: `Driver with id ${req.params['id']} does not exist`})}
     }
 
-    // async onField(req, res) {
-    //     if(await this.driverService.driverIsExist(req.params['id'])){
-    //         if(await this.fieldService.fieldIsExist(req.body['fieldId'])){
-    //             const result = await this.driverService.moveToField(req.params['id'] , req.body['fieldId']);
-    //         } else { res.status(404).json({message: `Field with id ${req.body['fieldId']} does not exist`})}
-    //     } else { res.status(404).json({message: `Driver with id ${req.params['id']} does not exist`})}
-    // }}
+    async onField(req, res) {
+        if(await this.driverService.driverIsExist(req.params['id'])){
+            if(await this.fieldService.fieldIsExist(req.body['fieldId'])){
+                const result = await this.driverService.moveToField(req.params['id'] , req.body['fieldId']);
+                res.status(200).json({message : result});
+            } else { res.status(404).json({message: `Field with id ${req.body['fieldId']} does not exist`})}
+        } else { res.status(404).json({message: `Driver with id ${req.params['id']} does not exist`})}
+    }
 
     // async loadIntoCar(){
 

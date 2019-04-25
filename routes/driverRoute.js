@@ -6,6 +6,8 @@ const {driversCollection} = require('../config');
 const router = express.Router();
 const driverController = new DriverController(driversCollection);
 
+router.post('/', bodyHandler.bodyIsJSON())
+
 router.post('/', bodyHandler.checkBody(driversCollection), driverController.createDocument);
 router.get('/', filterHandler.checkFilter(), driverController.getAllDocument);
 router.get('/', driverController.getDocumentByFilter);
@@ -17,6 +19,7 @@ router.post('/:id([a-zA-z0-9]{24})/set-car', bodyHandler.checkCarId(), driverCon
 router.post('/:id([a-zA-z0-9]{24})/unset-car', bodyHandler.checkCarId(), driverController.unsetCar);
 router.post('/:id([a-zA-z0-9]{24})/slaveWork', driverController.assignOnField); //I have some questions!
 router.post('/:id([a-zA-z0-9]{24})/take-car', driverController.takeCar);
+router.post('/:id([a-zA-z0-9]{24})/on-field', driverController.onField)
 
 
 module.exports = router;

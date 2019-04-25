@@ -6,6 +6,7 @@ const {storesCollection} = require('../config');
 const router = express.Router();
 const storeController = new StoreController(storesCollection);
 
+router.post('/', bodyHandler.bodyIsJSON())
 
 router.post('/', bodyHandler.checkBody(), storeController.createDocument);
 router.get('/', storeController.getAllDocument);

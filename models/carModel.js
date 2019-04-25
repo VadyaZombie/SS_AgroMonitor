@@ -24,6 +24,10 @@ class CarModel extends AgroModel {
     async removeDriver(id){
         return await db.getDb().collection(this.collectionName).findOneAndUpdate({_id: new ObjectID(id)}, {$set: {"driverId" : ""}}, {returnOriginal: false});
     }
+
+    async getCarByDriverId(driverId){
+        return await db.getDb().collection(this.collectionName).findOne({driverId:driverId});
+    }
 }
 
 module.exports = CarModel;

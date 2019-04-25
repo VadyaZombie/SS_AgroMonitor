@@ -1,5 +1,5 @@
 const express = require('express');
-const {bodyHandler} = require('../error_handlers/error_handlers');
+const {bodyHandler, filterHandler} = require('../error_handlers/error_handlers');
 const CarController = require('../controllers/carController');
 const {carsCollection} = require('../config');
 
@@ -8,6 +8,7 @@ const carController = new CarController(carsCollection);
 
 // router.post('/', bodyHandler.checkBody(), carController.createDocument);
 // router.get('/', carController.getAllDocument);
+router.post('/', bodyHandler.bodyIsJSON())
 
 router.post('/', bodyHandler.checkBody(carsCollection), carController.createDocument);
 router.get('/', filterHandler.checkFilter(carsCollection), carController.getAllDocument);

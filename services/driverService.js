@@ -20,7 +20,7 @@ class DriverService extends AgroService {
         this.fieldModel = new FieldModel('fields');
     }
 
-    async driverIsFree(driverId){
+    async driverIsFree(driverId) {
         let result = await this.carService.checkDriver(driverId);
         if (result === null) {
             return await true;
@@ -29,8 +29,10 @@ class DriverService extends AgroService {
         }
     }
 
-    async driverIsExist(driverId){
-        if(driverId.length !== 24) {return false}
+    async driverIsExist(driverId) {
+        if (driverId.length !== 24) {
+            return false
+        }
         let result = await this.agroModel.getDocumentById(driverId);
         if (result) {
             return true;
@@ -39,35 +41,35 @@ class DriverService extends AgroService {
         }
     }
 
-    async takeCar(driverId){
+    async takeCar(driverId) {
         let result = await this.carService.takeCar(driverId);
         return await result;
     }
 
-    async addDriverToTheField(driverId, content){
-        return await this.fieldModel.addElementInDocumentArray(content['field_id'], driverId); //исправить
+    async addDriverToTheField(driverId, fieldId) {
+        return await this.fieldModel.addElementInDocumentArray(fieldId, driverId); //исправить
     }
 
-    async unloadCar(currCar, storeId){
+    async unloadCar(currCar, storeId) {
         await this.storeService.addToStore(storeId, currCar.curCap);
         return await this.carService.unload(currCar);
     }
 
-    async putCarInGarage(currCar, fieldId, driverId){
+    async putCarInGarage(currCar, fieldId, driverId) {
         let freeGarageId = await this.garageService.getFreeGarage();
         await this.fieldService.removeDriverFromField(fieldId, driverId);
-        return await this.garageService.addCarToGarage(freeGarageId, currCar["_id"]);    
+        return await this.garageService.addCarToGarage(freeGarageId, currCar["_id"]);
     }
 
-    async removeDriver(currCar){
+    async removeDriver(currCar) {
         return await this.carService.removeDriver(currCar);
     }
 
-    async assignOnField(driverId, content){
-        if (await this.driverIsFree(driverId)){
+    async assignOnField(driverId, content) {
+        if (await this.driverIsFree(driverId)) {
             let currCar = await this.takeCar(driverId);
-            await this.addDriverToTheField(driverId, content);
-            currCar = await this.carService.getWheat(currCar , content['field_id']);
+            await this.addDriverToTheField(driverId, content['field_id']);
+            currCar = await this.carService.getWheat(currCar, content['field_id']);
             let storeId = await this.storeService.getFreeStore(currCar.curCap);
             await this.unloadCar(currCar, storeId);
             await this.putCarInGarage(currCar, content['field_id'], driverId);
@@ -79,17 +81,38 @@ class DriverService extends AgroService {
         }
     }
 
-    async takeCarById(driverId, carId){
-        if(this.driverIsFree(driverId)){
+    async takeCarById(driverId, carId) {
+        if (this.driverIsFree(driverId)) {
             let curCar = await this.carService.getDocumentById(carId);
             if (!curCar.driverId) {
-                curCar = await this.carService.updateDocument(carId, {driverId:driverId});
+                curCar = await this.carService.updateDocument(carId, {
+                    driverId: driverId
+                });
                 return await curCar.value;
-            } else { return await{ err : 'car is not available now'}};
-        } else { return await{ err : 'this driver is already working'}};
+            } else {
+                return await {
+                    err: 'car is not available now'
+                }
+            };
+        } else {
+            return await {
+                err: 'this driver is already working'
+            }
+        };
     }
 
-    // async 
+    async moveToField(driverId, fieldId) {
+        let curCar = await this.carService.getCarByDriverId(driverId);
+        await console.log(curCar['_id'], 'aaaaaaaaaaaaaaaa');
+        let curGarage = await this.garageService.getGarageByCarId(curCar['_id']);
+        await console.log(curGarage);
+
+        if (this.garageService.checkCarInGarage(curCar['_id'])) {
+            await this.garageService.removeCarFromGarage(curCar['_id'], curGarage['_id']);
+            await this.addDriverToTheField(driverId, fieldId);
+            return await `move to field with ${fieldId}`
+        }
+    }
 }
 
 module.exports = DriverService;

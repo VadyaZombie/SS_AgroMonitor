@@ -12,6 +12,8 @@ class CarService extends AgroService {
 
         this.fieldService = new FieldService('fields');
 
+        this.garageModel = new GarageModel('garages');
+        this.fieldModel = new FieldModel('fields');
         this.carModel = new CarModel(collectionName);
     }
 
@@ -47,6 +49,12 @@ class CarService extends AgroService {
         return result;
     }
 
+    async getCarByDriverId (driverId){
+        let curCar = await this.carModel.getCarByDriverId(driverId);
+        await console.log(curCar);
+        return await curCar;
+    }
+
     async unload (currCar){
         return await this.carModel.unloadCar(currCar['_id']);
     }
@@ -54,6 +62,7 @@ class CarService extends AgroService {
     async removeDriver(currCar){
         return await this.carModel.removeDriver(currCar['_id']);
     }
+
     async checkCarInGarage(carId) {
         const garages = await this.garageModel.getAllDocument();
 
@@ -62,15 +71,16 @@ class CarService extends AgroService {
                 if (id === carId) {
                     return true;
                 }
+
             }
         }
     }
 
     async checkDriverWork(driverId) {
         const fields = await this.fieldModel.getAllDocument();
-
+        await console.log(fields)
         for (let field of fields) {
-            for (let id of field['driversId']) {
+            for (let id of field['drivers']) {
                 if (id === driverId) {
                     return true;
                 }
@@ -121,12 +131,6 @@ class CarService extends AgroService {
         } else {
             return 'noCar';
         }
-    }
-    constructor(collectionName) {
-        super(collectionName);
-
-        this.garageModel = new GarageModel('garages');
-        this.fieldModel = new FieldModel('fields');
     }
 }
 

@@ -27,6 +27,18 @@ const patterns = {
     }
 }
 
+const bodyIsJSON = () => {
+    return (req, res, next) => {
+        console.log(req.headers['content-type'] == 'application/json');
+        if(req.headers['content-type'] == 'application/json'){
+            next();
+        } else {
+            next(err.generateError('Body content not in json format!'), 400);
+        }
+
+    };
+}
+
 const isEmptyCheck = (body, next) => {
     // for (value of Object.keys(body)) {
     //     if (!body[value] === 0 || !body[value]) {
@@ -63,12 +75,14 @@ const checkBodyContent = (body, curPattern, next) => {
 const checkBody = (collectionName) => {
     let curPattern = patterns[collectionName];
     return (req, res, next) => {
-        // for (let value of Object.values(req.body)) {
-        //     if (!value) {
-        //         next(err.generateError('Body value is empty', 400));
-        //     }
-        // }
-        next();
+        console.log(`This is a collection name ==> ${collectionName}`);
+        if (paramsAmountCheck(req.body, curPattern, next)) {
+            if (isEmptyCheck(req.body, next)) {
+                if (checkBodyContent(req.body, curPattern, next)) {
+                    next();
+                }
+            }
+        }
     };
 };
 
@@ -132,5 +146,6 @@ module.exports = {
     checkBody,
     checkCarId,
     checkGarageId,
-    checkStoreId
+    checkStoreId,
+    bodyIsJSON
 };

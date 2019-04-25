@@ -34,15 +34,15 @@ class StoreService extends AgroService {
             return 'noStoreTo';
         }
 
-        if(storeFrom['curCapacity'] === 0) {
+        if(storeFrom['curCap'] === 0) {
             return 'emptyStoreFrom';
         }
 
-        capacity = storeFrom['curCapacity'] + storeTo['curCapacity'];
+        capacity = storeFrom['curCap'] + storeTo['curCap'];
         
-        if(capacity <= storeTo['maxCapacity']) {
-            super.updateDocument(storeIdFrom, {curCapacity : 0});
-            return await super.updateDocument(storeIdTo, {curCapacity: capacity});
+        if(capacity <= storeTo['maxCap']) {
+            super.updateDocument(storeIdFrom, {curCap : 0});
+            return await super.updateDocument(storeIdTo, {curCap: capacity});
         } else {
             return 'fullStoreTo';
         } 

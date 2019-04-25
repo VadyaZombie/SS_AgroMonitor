@@ -5,13 +5,11 @@ const db = require('../dbConnect');
 class StoreModel extends AgroModel {
     constructor(collectionName) {
         super(collectionName);
-
     }
 
     async getFreeStore(amount){
         let connect = await db.getDb().collection(this.collectionName);
         let result = await connect.find().toArray();
-        await console.log(result, 'aaaaaaaaaaaaaaaa', this.collectionName);
         return await result;
     }
 
